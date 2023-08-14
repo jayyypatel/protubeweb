@@ -1,0 +1,69 @@
+{% extends 'root/layout.html' %}
+{% load static %}
+
+
+{% block body %}
+<div class="middle-sidebar-bottom">
+    <div class="middle-sidebar-left pe-0">
+        <div class="row">
+
+            <div class="col-xl-12">
+                <div class="chat-wrapper p-3 w-100 position-relative scroll-bar bg-white theme-dark-bg">
+                    <h2 class="fw-700 mb-4 mt-2 font-md text-grey-900 d-flex align-items-center">Notification
+                        
+
+                    </h2>
+
+                    <ul class="notification-box">
+
+
+                        {% if friend_requests %}
+
+                        {% for i in friend_requests %}
+                        <li>
+                            <a href="{% url 'root:user_profile' i.sender.username %}" class="d-flex align-items-center p-3 rounded-3 bg-lightblue theme-light-bg">
+
+                                
+                                {% if i.sender.p_img %}
+                                    <img src="{{i.sender.p_img.url}}" alt="user" class="w45 me-3">
+                                {% else %}
+                                    <img src="{% static 'images/user-7.png' %}" alt="user" class="w45 me-3">
+                                {% endif %}
+                                    
+                                
+
+                                <h6 class="font-xssss text-grey-900 text-grey-900 mb-0 mt-0 fw-500 lh-20">
+                                    <strong>{{i.sender.first_name}}</strong><span
+                                        class="d-block text-grey-500 font-xssss fw-600 mb-0 mt-0 0l-auto"> Friend Request Received</span> </h6>
+                                <i class="ti-more-alt text-grey-500 font-xs ms-auto"></i>
+                            </a>
+                        </li>
+                        {% endfor %}
+                        {% else %}
+                        <li>
+                            <a href="#" class="d-flex align-items-center p-3 rounded-3 bg-lightblue theme-light-bg">
+                                
+                                <h3>No Friend Request Received Yet...</h3>
+                                
+                            </a>
+                        </li>
+                        {% endif %}
+
+
+
+
+
+
+
+
+
+
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock body %}

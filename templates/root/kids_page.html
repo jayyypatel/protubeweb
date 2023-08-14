@@ -1,0 +1,137 @@
+{% extends 'root/layout.html' %}
+{% load static %}
+
+{% block body %}
+<div class="middle-sidebar-bottom">
+    <div class="middle-sidebar-left">
+        <!-- loader wrapper -->
+        <div class="preloader-wrap p-3">
+            <div class="box shimmer">
+                <div class="lines">
+                    <div class="line s_shimmer"></div>
+                    <div class="line s_shimmer"></div>
+                    <div class="line s_shimmer"></div>
+                    <div class="line s_shimmer"></div>
+                </div>
+            </div>
+            <div class="box shimmer mb-3">
+                <div class="lines">
+                    <div class="line s_shimmer"></div>
+                    <div class="line s_shimmer"></div>
+                    <div class="line s_shimmer"></div>
+                    <div class="line s_shimmer"></div>
+                </div>
+            </div>
+            <div class="box shimmer">
+                <div class="lines">
+                    <div class="line s_shimmer"></div>
+                    <div class="line s_shimmer"></div>
+                    <div class="line s_shimmer"></div>
+                    <div class="line s_shimmer"></div>
+                </div>
+            </div>
+        </div>
+        <!-- loader wrapper -->
+        
+        <div class="row feed-body">
+            <div class="card w-100 shadow-xss rounded-xxl border-0 p-4 mb-3">
+                <h2 style="align-self: center;color: blue;"><b> {{title}} </b></h2>
+            </div>
+            <div class="col-xl-8 col-xxl-9 col-lg-8">
+
+
+
+
+
+
+
+                
+
+
+                {% if random_post_kids %}
+                
+                {% for i in random_post_kids %}
+                <div class="card w-100 shadow-xss rounded-xxl border-0 p-4 mb-3">
+                    <div class="card-body p-0 d-flex">
+                        <figure class="avatar me-3">
+                            
+                            {% if i.user.p_img %}
+                            <img src="{{i.user.p_img.url}}" alt="image" class="shadow-sm rounded-circle w45">
+                            {% else %}
+                            <img src="{% static 'images/user-8.png' %}" alt="image" class="shadow-sm rounded-circle w45">
+                            {% endif %}
+                                
+                            
+                        
+                        </figure>
+                        <h4 class="fw-700 text-grey-900 font-xssss mt-1">{{i.user.first_name}} <span class="d-block font-xssss fw-500 mt-1 lh-3 text-grey-500"></span></h4>
+                        <a href="{% url 'root:user_profile' i.user.username %}" class="ms-auto" id="dropdownMenu5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ti-more-alt text-grey-900 btn-round-md bg-greylight font-xss"></i></a>
+                        
+                    </div>
+                    <div class="card-body p-0 mb-3 rounded-3 overflow-hidden">
+                        
+                        {% if i.video %}
+                        <!-- class="video-btn"  / video / controls="controls" preload="preload"-->
+                        <a href="{% url 'root:display_video' i.id %}" >
+                            <video     class="float-right w-100" >
+                                <source src="{{i.video.url}}" type="video/mp4">
+                            </video>
+                        </a>
+                        {% endif %}
+                            
+                        
+
+                    </div>
+                    <div class="card-body p-0 me-lg-5">
+                        <p class="fw-500 text-black-500 lh-26 font-xssss w-100 mb-2">{{i.content}}
+                    </div>
+                    <div class="card-body d-flex p-0">
+                        
+                    </div>
+                </div>
+                {% endfor %}
+                    
+                
+                {% endif %}
+
+                
+
+
+
+
+
+                
+
+                <div class="card w-100 text-center shadow-xss rounded-xxl border-0 p-4 mb-3 mt-3">
+                    <div class="snippet mt-2 ms-auto me-auto" data-title=".dot-typing">
+                        <div class="stage">
+                            <div class="dot-typing"></div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col-xl-4 col-xxl-3 col-lg-4 ps-lg-0">
+                
+
+
+
+
+
+
+
+
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+</div>
+<!-- main content -->
+
+
+</div>
+{% endblock body %}

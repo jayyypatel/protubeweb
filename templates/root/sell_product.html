@@ -1,0 +1,96 @@
+{% extends 'root/layout.html' %}
+{% load static %}   
+
+
+{% block body %}
+<div class="middle-sidebar-bottom">
+    <div class="middle-sidebar-left">
+        <div class="middle-wrap">
+            <div class="card w-100 border-0 bg-white shadow-xs p-0 mb-4">
+                <div class="card-body p-4 w-100 bg-current border-0 d-flex rounded-3">
+                    
+                    <h4 class="font-xs text-white fw-600 ms-4 mb-0 mt-2">Sell Your Product in Market place</h4>
+                </div>
+                <div class="card-body p-lg-5 p-4 w-100 border-0 ">
+                
+
+                <form action="." method="post" enctype='multipart/form-data'>
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-lg-6 mb-3">
+                            <div class="form-group">
+                                <label class="mont-font fw-600 font-xsss">Product Name</label><br>
+                                {{form.name}}
+                            </div>        
+                        </div>
+                        
+                        
+                    </div>
+
+                    <div class="row">
+                       
+
+                        <div class="col-lg-6 mb-3">
+                            <div class="form-group">
+                                <label class="mont-font fw-600 font-xsss">Price</label>
+                                {{form.price}}
+                            </div>        
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        
+
+                        <div class="col-lg-12 mb-3">
+                            <div class="form-group">
+                                <label class="mont-font fw-600 font-xsss">Owner Type</label>
+                                {{form.owner_type}}
+                            </div>        
+                        </div>
+                    </div>
+                    <div class="row">
+                        
+
+                        <div class="col-lg-12 mb-3">
+                            <div class="form-group">
+                                <label class="mont-font fw-600 font-xsss">Picture 1</label> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                {{form.pic1}}
+                            </div>        
+                        </div>
+                    </div>
+                    <div class="row">
+                        
+
+                        <div class="col-lg-12 mb-3">
+                            <div class="form-group">
+                                <label class="mont-font fw-600 font-xsss">Picture 2</label> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                {{form.pic2}}
+                            </div>        
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        
+
+                        
+                        <div class="col-lg-12 mb-3">
+                            <label class="mont-font fw-600 font-xsss">about</label>
+                            {{form.details}}
+                        </div>
+
+                        <div class="col-lg-12">
+                           
+                            <input type="submit" class="bg-current text-center text-white font-xsss fw-600 p-3 w175 rounded-3 d-inline-block" value="Save">
+                        </div>
+                    </div>
+
+                </form>
+                </div>
+            </div>
+            <!-- <div class="card w-100 border-0 p-2"></div> -->
+        </div>
+    </div>
+     
+</div>
+{% endblock body %}
+    

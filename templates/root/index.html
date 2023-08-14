@@ -1,0 +1,212 @@
+{% extends 'root/layout.html' %}
+{% load static %}
+
+{% block body %}
+<div class="middle-sidebar-bottom">
+    <div class="middle-sidebar-left">
+        <!-- loader wrapper -->
+        <div class="preloader-wrap p-3">
+            <div class="box shimmer">
+                <div class="lines">
+                    <div class="line s_shimmer"></div>
+                    <div class="line s_shimmer"></div>
+                    <div class="line s_shimmer"></div>
+                    <div class="line s_shimmer"></div>
+                </div>
+            </div>
+            <div class="box shimmer mb-3">
+                <div class="lines">
+                    <div class="line s_shimmer"></div>
+                    <div class="line s_shimmer"></div>
+                    <div class="line s_shimmer"></div>
+                    <div class="line s_shimmer"></div>
+                </div>
+            </div>
+            <div class="box shimmer">
+                <div class="lines">
+                    <div class="line s_shimmer"></div>
+                    <div class="line s_shimmer"></div>
+                    <div class="line s_shimmer"></div>
+                    <div class="line s_shimmer"></div>
+                </div>
+            </div>
+        </div>
+        <!-- loader wrapper -->
+        <div class="row feed-body">
+            <div class="col-xl-8 col-xxl-9 col-lg-8">
+
+
+
+
+
+
+
+                {% block createPost %}
+                {% include 'root/createPostform.html' %}
+                {% endblock createPost %}
+
+
+
+                {% if random_post %}
+                
+                {% for i in random_post %}
+                <div class="card w-100 shadow-xss rounded-xxl border-0 p-4 mb-3">
+                    <div class="card-body p-0 d-flex">
+                        <figure class="avatar me-3">
+                            
+                            {% if i.user.p_img %}
+                            <img src="{{i.user.p_img.url}}" alt="image" class="shadow-sm rounded-circle w45">
+                            {% else %}
+                            <img src="{% static 'images/user-8.png' %}" alt="image" class="shadow-sm rounded-circle w45">
+                            {% endif %}
+                                
+                            
+                        
+                        </figure>
+                        <h4 class="fw-700 text-grey-900 font-xssss mt-1">{{i.user.first_name}} <span class="d-block font-xssss fw-500 mt-1 lh-3 text-grey-500"></span></h4>
+                        <a href="{% url 'root:user_profile' i.user.username %}" class="ms-auto" id="dropdownMenu5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ti-more-alt text-grey-900 btn-round-md bg-greylight font-xss"></i></a>
+                        
+                    </div>
+                    <div class="card-body p-0 mb-3 rounded-3 overflow-hidden">
+                        
+                        {% if i.video %}
+                        <!-- class="video-btn"  / video / controls="controls" preload="preload"-->
+                        <a href="{% url 'root:display_video' i.id %}" >
+                            <video     class="float-right w-100" >
+                                <source src="{{i.video.url}}" type="video/mp4">
+                            </video>
+                        </a>
+                        {% endif %}
+                            
+                        
+
+                    </div>
+                    <div class="card-body p-0 me-lg-5">
+                        <p class="fw-500 text-black-500 lh-26 font-xssss w-100 mb-2">{{i.content}}
+                    </div>
+                    <div class="card-body d-flex p-0">
+                        
+                    </div>
+                </div>
+                {% endfor %}
+                    
+                
+                {% endif %}
+
+                
+
+
+
+
+
+                
+
+                <div class="card w-100 text-center shadow-xss rounded-xxl border-0 p-4 mb-3 mt-3">
+                    <div class="snippet mt-2 ms-auto me-auto" data-title=".dot-typing">
+                        <div class="stage">
+                            <div class="dot-typing"></div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col-xl-4 col-xxl-3 col-lg-4 ps-lg-0">
+                <div class="card w-100 shadow-xss rounded-xxl border-0 mb-3">
+                    <div class="card-body d-flex align-items-center p-4">
+                        <h4 class="fw-700 mb-0 font-xssss text-grey-900">Friend Request</h4>
+                        <!-- default-member.html -->
+                        <a href="{% url 'root:notifications' %}" class="fw-600 ms-auto font-xssss text-primary">See all</a>
+                    </div>
+
+
+                    {% if friend_requests %}
+                    {% for i in friend_requests %}
+                    <div class="card-body d-flex pt-4 ps-4 pe-4 pb-0 border-top-xs bor-0">
+                        <figure class="avatar me-3">
+                            {% if i.sender.p_img %}
+                            <img src="{{i.sender.p_img.url}}" alt="image" class="shadow-sm rounded-circle w45">
+                            {% else %}
+                            <img src="{% static 'images/user-7.png' %}" alt="image" class="shadow-sm rounded-circle w45">
+                            {% endif %}
+
+                        </figure>
+                        <h4 class="fw-700 text-grey-900 font-xssss mt-1">{{i.sender.first_name}}</h4>
+                    </div>
+                    <div class="card-body d-flex align-items-center pt-0 ps-4 pe-4 pb-4">
+                        <a href="{% url 'root:accept_friend_request' i.id %}"
+                            class="p-2 lh-20 w100 bg-primary-gradiant me-2 text-white text-center font-xssss fw-600 ls-1 rounded-xl">Accept</a>
+                        <a href="{% url 'root:user_profile' i.sender.username %}"
+                            class="p-2 lh-20 w100 bg-grey text-grey-800 text-center font-xssss fw-600 ls-1 rounded-xl">Visit</a>
+                    </div>
+                    {% endfor %}
+                    {% else %}
+                    <div class="card-body d-flex pt-4 ps-4 pe-4 pb-0 border-top-xs bor-0">
+                        <figure>No Request yet</figure>
+                    </div>
+                    {% endif %}
+
+
+
+
+
+
+                </div>
+
+
+                <div class="card w-100 shadow-xss rounded-xxl border-0 p-0 ">
+                    <div class="card-body d-flex align-items-center p-4 mb-0">
+                        <h4 class="fw-700 mb-0 font-xssss text-grey-900">Confirm Friend</h4>
+                        <a href="{% url 'root:my_friends' %}" class="fw-600 ms-auto font-xssss text-primary">See all</a>
+                    </div>
+
+                    {% if confirm_friends %}
+
+                    {% for i in confirm_friends %}
+                    <div class="card-body bg-transparent-card d-flex p-3 bg-greylight m-3 rounded-3"
+                        style="margin-bottom: 0 !important;">
+                        <figure class="avatar me-2 mb-0">
+                            {% if i.p_img %}
+                            <img src="{{i.p_img.url}}" alt="image" class="shadow-sm rounded-circle w45">
+                            {% else %}
+                            <img src="images/user-7.png" alt="image" class="shadow-sm rounded-circle w45">
+                            {% endif %}
+                            
+                            
+                            </figure>
+                        <h4 class="fw-700 text-grey-900 font-xssss mt-2"> {{i.first_name}} <span
+                                class="d-block font-xssss fw-500 mt-1 lh-3 text-grey-500">friends</span></h4>
+                        <a href="{% url 'root:user_profile' i.username %}" class="btn-round-sm bg-white text-grey-900 feather-chevron-right font-xss ms-auto mt-2"></a>
+                    </div>
+
+                    {% endfor %}
+                    {% else %}
+                    <div class="card-body bg-transparent-card d-flex p-3 bg-greylight ms-3 me-3 rounded-3">
+                        <figure>No Friends Yet</figure>
+                    </div>
+
+                    {% endif %}
+
+                </div>
+
+
+
+
+
+
+
+
+
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+</div>
+<!-- main content -->
+
+
+</div>
+{% endblock body %}
